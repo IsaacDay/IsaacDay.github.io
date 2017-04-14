@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<script scr="https://simplycoding.org/files/simplyjs/simply.js"></script>
+		<script>
+			function start() {
+				sjs.open();
+				sjs.open("target",1000,700);
+				var createBtn = new sjs.Button("play", function(){
+					window.location="Race.html";
+				});
+				createBtn.moveTo(500,600);
+			}
+		</script>
+	</head>
+	<body onload="start()">
+		<div id="target" style="margin: auto; background-color: blue; width: 1000px; height: 700px; position: relative; overflow: 	hidden;">
+			<h1 style="color:white">1. To control the green car, use WASD.</h1>
+			<br>
+			<h1 style="color:white">2. The red car is automatic. It goes slower than the other cars but is immune to rocks.</h1>
+			<br>
+			<h1 style="color:white">3. To control the race car, use the arrow keys.</h1>
+			<br>
+			<h1 style="color:white">4. Don't hit the rocks!</h1>
+			<button style="positon: absolute; font-size: 18px; color: black; display: inline; left: 500px; top: 600px;">play</button>
+		</div>
+	</body>
+</html>

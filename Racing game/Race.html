@@ -1,0 +1,176 @@
+<html>
+	<head>
+		<title>
+		</title>
+		<script src="https://simplycoding.org/files/simplyjs/simply.js"></script>
+		<script>
+			function start() {
+				
+				sjs.open("target",800,800);
+
+				var background = new sjs.Image("Images/Road.png");
+				background.setSize(800,5000);
+
+				var player = new sjs.Image("Images/Car.png");
+				player.setSize(100,180);
+				player.moveTo(450,5000);
+				player.type="player";
+
+				player.friction=.23;
+
+				var player1 = new sjs.Image("Images/Car_Green.png");
+				player1.setSize(100,180);
+				player1.moveTo(150,5000);
+				player1.type="player";
+				player1.pushUp(2.4);
+				player1.friction=.2;
+
+				var player2 = new sjs.Image("Images/Car-Red.png");
+				player2.setSize(100,180);
+				player2.moveTo(300,5000);
+				player2.type="player2";
+				player2.friction=0;
+				player2.pushUp(1);
+
+				sjs.scrollable(player2, background);
+				//sjs.scroll = true;
+				/*
+				setInterval(function(){
+				if (player.getY() < player1.getY())
+				{
+					sjs.scrollable(player, background);
+				}
+				else
+				{
+					sjs.scrollable(player1, background);
+				}
+				},2000);
+				*/
+				//sjs.gy = Math.min(Math.min(player.getY(),player1.getY()),player2.getY());
+
+				/*
+				sjs.keyDown(66, function(){
+				sjs.gy += 50;
+				})
+				*/
+
+				var check = new sjs.Image("Images/checkered-flag.jpg");
+				check.type="check";
+				check.setSize(1000,217);
+				check.moveTo(0,0);
+				var p2=1;
+				sjs.keyDown(UP_KEY, function(){
+					player.pushUp(3.2);
+					if(p2==1){
+						player2.pushUp(11.4);
+						p2=2;
+					}
+				});
+
+				sjs.keyDown(LEFT_KEY, function(){
+					player.pushLeft(0.8);
+				});
+
+				sjs.keyDown(RIGHT_KEY, function(){
+					player.pushRight(0.8);
+				});
+
+				sjs.keyDown(DOWN_KEY, function(){
+					player.pushDown(0.8);
+				});
+
+				/*PLAYER2*/
+
+
+
+
+				/*PLAYER1*/
+				W_KEY = 0x57;
+				A_KEY = 0x41;
+				D_KEY = 0x44;
+				S_KEY = 0x53;
+					sjs.keyDown(W_KEY, function(){   
+                        player1.pushUp(2.9);   
+                    });   
+    
+                    sjs.keyDown(A_KEY, function(){   
+                        player1.pushLeft(0.8);   
+                    });   
+    
+                    sjs.keyDown(D_KEY, function(){   
+                        player1.pushRight(0.8);   
+                    });   
+    
+                    sjs.keyDown(S_KEY, function(){   
+                        player1.pushDown(0.8);   
+                    });
+
+				for(var i = 0; i < 20; i++)
+				{
+
+					var rock = new sjs.Image("Images/Rock.png");
+					rock.type = "rock";
+					rock.setSize(40,40);
+					rock.moveTo(Math.floor(50+Math.random()*740), Math.floor(Math.random()*4400));
+
+
+				}
+
+				var time=0;
+				var timer= new sjs.Text("Time: "+time, 21, "red");
+				timer.fixed = true;
+
+				setInterval(function(){
+					time = time + 1;
+					timer.setText("Time: "+time, 21, "red");
+
+				},1000)
+
+				sjs.onHit("player","rock", function(p,r){
+					sjs.bounceOff(p,r);
+					time = time + 3;
+					timer.setText("Time: "+time, 21, "red");
+				});
+
+				sjs.onHit("player","check", function(x,y){
+					sjs.setStage="Game_rules.html";
+				});
+
+				sjs.onHit("player2", "check", function(x,y){
+					setStage="You_lose.html";
+				});
+			}
+		</script>
+	</head>
+	<body onload="start()">
+		<h1></h1>
+		<div id="target" style="margin: auto; background: grey; width: 800px; height: 800px; position: relative; overflow: hidden;">
+			<img src="Images/Road.png" width="800" height="5000" style="position: absolute; display: inline; left: px; top: px;">
+			<img src="Images/Car.png" width="50" height="200" style="position: absolute; display: inline; left: px; top: px;">
+			<img src="Images/Car_Green.png" width="50" height="200" style="position: absolute; display: inline; left: -px; top: px;">
+			<img src="Images/Car-Red.png" width="50" height="200" style="position: absolute; display: inline; left: px; top: px;">
+			<img src="Images/checkered-flag.jpg" width="800" height="204" style="position: absolute; display: inline; left: -200px; top: 0px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 364px; top: 1812px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 320px; top: 744px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 194px; top: 251px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 687px; top: 2298px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 275px; top: 2728px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 84px; top: 2646px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 595px; top: 2944px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 544px; top: 12px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 605px; top: 1389px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 574px; top: 4337px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 518px; top: 3429px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 293px; top: 672px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 443px; top: 4066px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 612px; top: 475px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 675px; top: 3794px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 760px; top: 2678px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 705px; top: 2761px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 635px; top: 4201px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 367px; top: 1013px;">
+			<img src="Images/Rock.png" width="40" height="40" style="position: absolute; display: inline; left: 178px; top: 2206px;">
+			<span style="position: absolute; font-size: 21px; color: red; font-family: Arial; display: inline; left: 0px; top: 0px;">Time: </span>
+		</div>
+	</body>
+</html>
